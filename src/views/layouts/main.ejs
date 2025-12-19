@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title><%= title %></title>
+    <meta name="description" content="<%= description || 'AntSmartHome - Domótica profesional en Bucaramanga, Colombia. Transformamos tu hogar en un espacio inteligente.' %>">
+    <meta name="keywords" content="domótica, hogar inteligente, smart home, Bucaramanga, Colombia, automatización, seguridad, iluminación inteligente">
+    <meta name="author" content="AntSmartHome">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<%= process.env.BASE_URL || 'https://antsmarthome.com' %>">
+    <meta property="og:title" content="<%= title %>">
+    <meta property="og:description" content="<%= description || 'Domótica profesional en Bucaramanga' %>">
+    <meta property="og:image" content="/images/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="<%= title %>">
+    <meta property="twitter:description" content="<%= description || 'Domótica profesional en Bucaramanga' %>">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="/css/styles.css">
+    
+    <!-- Inicialización rápida del tema (evita flash) -->
+    <script>
+        (function() {
+            var theme = localStorage.getItem('theme');
+            if (theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="<%= process.env.BASE_URL || 'https://antsmarthome.com' %>">
+</head>
+<body>
+    <!-- ================================
+         HEADER / NAVEGACIÓN
+         ================================ -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="/" class="nav__logo">
+                <img src="/images/LogotipoNEGRO.png" alt="AntSmartHome" class="nav__logo-img nav__logo-img--light">
+                <img src="/images/icono1.png" alt="AntSmartHome" class="nav__logo-img nav__logo-img--dark">
+                <span class="nav__logo-text">Ant<span class="highlight">Smart</span>Home</span>
+            </a>
+            
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="/#inicio" class="nav__link">Inicio</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="/#nosotros" class="nav__link">Nosotros</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="/#servicios" class="nav__link">Servicios</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="/#paquetes" class="nav__link">Paquetes</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="/#beneficios" class="nav__link">Beneficios</a>
+                    </li>
+                </ul>
+                
+                <button class="nav__close" id="nav-close" aria-label="Cerrar menú">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="nav__actions">
+                <!-- Toggle de modo oscuro -->
+                <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
+                    <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                
+                <a href="<%= generateWhatsAppLink('¡Hola! Quiero información sobre domótica para mi hogar en Bucaramanga.') %>" 
+                   class="btn btn--primary btn--sm" 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                    <span class="btn__icon">💬</span>
+                    <span class="btn__text">WhatsApp</span>
+                </a>
+                
+                <button class="nav__toggle" id="nav-toggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ================================
+         CONTENIDO PRINCIPAL
+         ================================ -->
+    <main class="main">
+        <%- body %>
+    </main>
+
+    <!-- ================================
+         FOOTER
+         ================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <!-- Columna 1: Logo y descripción -->
+                <div class="footer__col">
+                    <a href="/" class="footer__logo">
+                        <img src="/images/LogotipoNEGRO.png" alt="AntSmartHome" class="footer__logo-img footer__logo-img--light">
+                        <img src="/images/icono1.png" alt="AntSmartHome" class="footer__logo-img footer__logo-img--dark">
+                        <span>Ant<span class="highlight">Smart</span>Home</span>
+                    </a>
+                    <p class="footer__description">
+                        Transformamos hogares en espacios inteligentes. 
+                        Soluciones de domótica profesional en Bucaramanga, Colombia.
+                    </p>
+                    <div class="footer__social">
+                        <a href="<%= generateWhatsAppLink('¡Hola! Vi su página web y me gustaría recibir información.') %>" 
+                           class="footer__social-link" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           aria-label="WhatsApp">
+                            💬
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Columna 2: Enlaces rápidos -->
+                <div class="footer__col">
+                    <h4 class="footer__title">Enlaces</h4>
+                    <ul class="footer__links">
+                        <li><a href="/#inicio">Inicio</a></li>
+                        <li><a href="/#nosotros">Nosotros</a></li>
+                        <li><a href="/#servicios">Servicios</a></li>
+                        <li><a href="/#paquetes">Paquetes</a></li>
+                        <li><a href="/#beneficios">Beneficios</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Columna 3: Servicios -->
+                <div class="footer__col">
+                    <h4 class="footer__title">Servicios</h4>
+                    <ul class="footer__links">
+                        <li><a href="/#servicios">Automatización</a></li>
+                        <li><a href="/#servicios">Seguridad</a></li>
+                        <li><a href="/#servicios">Iluminación</a></li>
+                        <li><a href="/#servicios">Climatización</a></li>
+                        <li><a href="/#servicios">Control por Voz</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Columna 4: Contacto -->
+                <div class="footer__col">
+                    <h4 class="footer__title">Contacto</h4>
+                    <ul class="footer__contact">
+                        <li>
+                            <span class="footer__contact-icon">📍</span>
+                            <span>Bucaramanga, Colombia</span>
+                        </li>
+                        <li>
+                            <span class="footer__contact-icon">📧</span>
+                            <a href="mailto:<%= company.email %>"><%= company.email %></a>
+                        </li>
+                        <li>
+                            <span class="footer__contact-icon">📱</span>
+                            <a href="<%= generateWhatsAppLink('¡Hola! Necesito información sobre sus servicios de domótica.') %>" 
+                               target="_blank" 
+                               rel="noopener noreferrer">
+                                <%= company.phone %>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="footer__bottom">
+                <p>&copy; <%= currentYear %> <%= company.name %>. Todos los derechos reservados.</p>
+                <p class="footer__tagline">Domótica profesional en Bucaramanga 🇨🇴</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================================
+         BOTÓN FLOTANTE WHATSAPP
+         ================================ -->
+    <a href="<%= generateWhatsAppLink('¡Hola! Estoy interesado en sus servicios de domótica. ¿Me pueden ayudar?') %>" 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Contactar por WhatsApp">
+        <span class="whatsapp-float__icon">💬</span>
+        <span class="whatsapp-float__text">¿Necesitas ayuda?</span>
+    </a>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>
+</body>
+</html>

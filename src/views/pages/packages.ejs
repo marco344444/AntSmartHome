@@ -1,0 +1,133 @@
+<!-- ================================
+     PÁGINA DE PAQUETES DETALLADOS
+     ================================ -->
+
+<!-- Header de la página -->
+<section class="page-header">
+    <div class="container">
+        <span class="page-header__badge">Nuestros Paquetes</span>
+        <h1 class="page-header__title">
+            Paquetes de <span class="highlight">Domótica</span>
+        </h1>
+        <p class="page-header__description">
+            Encuentra el paquete perfecto para automatizar tu hogar. 
+            Todos incluyen instalación profesional y soporte técnico.
+        </p>
+        <nav class="page-header__breadcrumb">
+            <a href="/">Inicio</a>
+            <span>/</span>
+            <span>Paquetes</span>
+        </nav>
+    </div>
+</section>
+
+<!-- Lista de paquetes -->
+<section class="packages-detail section">
+    <div class="container">
+        <% packages.forEach(function(pkg, index) { %>
+        <div class="package-detail <%= pkg.featured ? 'package-detail--featured' : '' %>" id="<%= pkg.id %>">
+            <div class="package-detail__header">
+                <div class="package-detail__number"><%= index + 1 %></div>
+                <div class="package-detail__info">
+                    <% if (pkg.featured) { %>
+                    <span class="package-detail__badge">⭐ Más Popular</span>
+                    <% } %>
+                    <h2 class="package-detail__name"><%= pkg.name %></h2>
+                    <p class="package-detail__description"><%= pkg.description %></p>
+                </div>
+                <div class="package-detail__price">
+                    <span class="package-detail__price-label">Inversión</span>
+                    <span class="package-detail__price-value"><%= pkg.price %></span>
+                </div>
+            </div>
+            
+            <div class="package-detail__body">
+                <h3 class="package-detail__subtitle">¿Qué incluye este paquete?</h3>
+                <ul class="package-detail__benefits">
+                    <% pkg.benefits.forEach(function(benefit) { %>
+                    <li>
+                        <span class="package-detail__check">✓</span>
+                        <span><%= benefit %></span>
+                    </li>
+                    <% }); %>
+                </ul>
+            </div>
+            
+            <div class="package-detail__footer">
+                <div class="package-detail__guarantee">
+                    <span>🛡️</span>
+                    <span>Garantía incluida en todos los productos</span>
+                </div>
+                <a href="<%= generateWhatsAppLink(pkg.whatsappMessage) %>" 
+                   class="btn <%= pkg.featured ? 'btn--primary' : 'btn--outline' %> btn--lg"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="btn__icon">💬</span>
+                    Cotizar <%= pkg.name %>
+                </a>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</section>
+
+<!-- CTA personalizado -->
+<section class="packages-cta section section--gray">
+    <div class="container">
+        <div class="packages-cta__content">
+            <div class="packages-cta__icon">🎨</div>
+            <h2 class="packages-cta__title">¿Necesitas algo diferente?</h2>
+            <p class="packages-cta__description">
+                Si ninguno de estos paquetes se ajusta a lo que buscas, no te preocupes. 
+                Podemos diseñar una solución 100% personalizada para tu hogar.
+            </p>
+            <a href="<%= generateWhatsAppLink('¡Hola! Me gustaría diseñar un paquete de domótica personalizado para mi hogar. ¿Pueden ayudarme?') %>" 
+               class="btn btn--primary btn--lg"
+               target="_blank"
+               rel="noopener noreferrer">
+                <span class="btn__icon">✨</span>
+                Crear Paquete Personalizado
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ rápido -->
+<section class="faq section">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Preguntas Frecuentes</h2>
+        </div>
+        
+        <div class="faq__grid">
+            <div class="faq__item">
+                <h3 class="faq__question">¿Los precios incluyen instalación?</h3>
+                <p class="faq__answer">
+                    Sí, todos nuestros paquetes incluyen instalación profesional y configuración 
+                    completa de los dispositivos en tu hogar en Bucaramanga.
+                </p>
+            </div>
+            <div class="faq__item">
+                <h3 class="faq__question">¿Puedo agregar más dispositivos después?</h3>
+                <p class="faq__answer">
+                    ¡Por supuesto! Todos nuestros sistemas son escalables. Puedes empezar con 
+                    un paquete básico e ir agregando dispositivos según tus necesidades.
+                </p>
+            </div>
+            <div class="faq__item">
+                <h3 class="faq__question">¿Qué garantía tienen los productos?</h3>
+                <p class="faq__answer">
+                    Todos los dispositivos cuentan con garantía del fabricante. Además, 
+                    ofrecemos garantía adicional en la instalación y configuración.
+                </p>
+            </div>
+            <div class="faq__item">
+                <h3 class="faq__question">¿Hacen instalaciones fuera de Bucaramanga?</h3>
+                <p class="faq__answer">
+                    Sí, cubrimos el área metropolitana de Bucaramanga (Floridablanca, Girón, 
+                    Piedecuesta). Consulta por otras ciudades.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
